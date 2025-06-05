@@ -11,7 +11,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Plus } from "lucide-react"
+import { Pen } from "lucide-react"
 import {
     Form,
     FormControl,
@@ -24,17 +24,18 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { todoFormSchema, TodoFormValue } from "@/validation"
-import { createTodoListAction } from "@/actions/todo.actions"
+import { createTodoListAction, updateTodoListAction } from "@/actions/todo.actions"
 import { Checkbox } from "./ui/checkbox"
 import { useState } from "react"
 import Spinner from "./Spinner"
+import { ITodo } from "@/interfaces"
 
-export function AddTodoForm({ userId }: { userId: string | null }) {
+export function EditTodoForm({ todo }: { todo: ITodo }) {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
 
-    // Default values for the form
-    const defaultValues: TodoFormValue = { title: "", body: "", completed: false ,user_id: '' };
+    // Default values for the form  this only chnagedddd 🛑🛑
+    const defaultValues: TodoFormValue = { title: todo.title, body: todo.body as string, completed: todo.completed };
 
     // Initialize the form with the schema and default values
     const form = useForm<TodoFormValue>({
@@ -43,9 +44,18 @@ export function AddTodoForm({ userId }: { userId: string | null }) {
         mode: "onChange",
     });
 
-    const onSubmit = async ({ title, body, completed }: TodoFormValue) => {
+    const onSubmit = async (data: TodoFormValue) => {
         setLoading(true);
-        await createTodoListAction({ title, body, completed, user_id: userId as string }); // Ensure user_id is not null
+        // Here you would call the action to update the todo
+        await updateTodoListAction({
+            todo: {
+                id: todo.id,
+                title: data.title,
+                body: data.body as string,
+                completed: data.completed
+            }
+        });
+
         form.reset(defaultValues); // Reset the form after submission
         setLoading(false);
         setOpen(false); // Close the dialog after submission
@@ -55,15 +65,14 @@ export function AddTodoForm({ userId }: { userId: string | null }) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button>
-                    <Plus size={15} />
-                    New Todo
+                    <Pen size={15} />
                 </Button>
             </DialogTrigger>
 
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>New Todo</DialogTitle>
-                    <DialogDescription>Add your todo title and description.</DialogDescription>
+                    <DialogTitle>Edit Todo</DialogTitle>
+                    <DialogDescription>Edit your todo title and description.</DialogDescription>
                 </DialogHeader>
 
                 <Form {...form}>
@@ -121,7 +130,7 @@ export function AddTodoForm({ userId }: { userId: string | null }) {
                                 <Button variant="outline" type="button">Cancel</Button>
                             </DialogClose>
                             <Button type="submit">
-                                {loading ? <Spinner /> : "Save"}
+                                {loading ? <Spinner /> : "Edit"}
                             </Button>
                         </DialogFooter>
                     </form>
