@@ -14,20 +14,27 @@ export const getTodoListAction = async () => {
     }
 }
 
-export const createTodoListAction = async ({ title, body }: TodoFormValue) => {
-   try{
-    const todo = await prisma.todo.create({
-        data: {
-            title,
-            body,
-        },
-   }) 
-    return todo;
-   } catch (error) {
-       console.error("Error creating todo:", error);
-       throw error;
-   }
+export const createTodoListAction = async ({ title, body, completed }: TodoFormValue) => {
+    try {
+        const todo = await prisma.todo.create({
+            data: {
+                title,
+                body,
+                completed,
+            },
+        })
+        return todo;
+    } catch (error) {
+        console.error("Error creating todo:", error);
+        throw error;
+    }
 
 };
 export const updateTodoListAction = async () => { }
-export const deleteTodoListAction = async () => { }
+export const deleteTodoListAction = async ({ id }: { id: string }) => {
+    await prisma.todo.delete({
+        where: {
+            id
+        }
+    })
+}

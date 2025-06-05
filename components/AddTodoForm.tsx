@@ -25,11 +25,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { todoFormSchema, TodoFormValue } from "@/validation"
 import { createTodoListAction } from "@/actions/todo.actions"
+import { Checkbox } from "./ui/checkbox"
 
 export function AddTodoForm() {
 
     // Default values for the form
-    const defaultValues: TodoFormValue = { title: "default title", body: "default body" };
+    const defaultValues: TodoFormValue = { title: "", body: "", completed: false };
 
     // Initialize the form with the schema and default values
     const form = useForm<TodoFormValue>({
@@ -40,7 +41,7 @@ export function AddTodoForm() {
 
     const onSubmit = async (data: TodoFormValue) => {
         console.log("Submitted Data:", data)
-        await createTodoListAction({ title: data.title, body: data.body })
+        await createTodoListAction({ title: data.title, body: data.body, completed: data.completed });
     }
 
     return (
@@ -82,6 +83,23 @@ export function AddTodoForm() {
                                     <FormControl>
                                         <textarea placeholder="Todo body" {...field} className="w-full p-2 border rounded" />
                                     </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="completed"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                            className="h-4 w-4"
+                                        />
+                                    </FormControl>
+                                    <FormLabel>Completed</FormLabel>
                                     <FormMessage />
                                 </FormItem>
                             )}
