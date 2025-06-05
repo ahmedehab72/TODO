@@ -1,6 +1,7 @@
 'use server';
 import { TodoFormValue } from "@/validation";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient()
 
@@ -23,6 +24,7 @@ export const createTodoListAction = async ({ title, body, completed }: TodoFormV
                 completed,
             },
         })
+        revalidatePath('/')
         return todo;
     } catch (error) {
         console.error("Error creating todo:", error);
@@ -37,4 +39,6 @@ export const deleteTodoListAction = async ({ id }: { id: string }) => {
             id
         }
     })
+    revalidatePath('/')
+
 }
