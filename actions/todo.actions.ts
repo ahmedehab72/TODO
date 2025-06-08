@@ -1,5 +1,6 @@
 'use server';
 import { ITodo } from "@/interfaces";
+import { TodoFormValue } from "@/validation";
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -11,6 +12,7 @@ export const getTodoListAction = async ({ userId }: { userId: string | null }) =
             where: userId ? {  userId } : undefined,
             orderBy: { createdAt: 'desc' }
         });
+
         return todos;
     } catch (error) {
         console.error("Error fetching todo list:", error);

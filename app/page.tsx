@@ -2,6 +2,7 @@ import { getTodoListAction } from "@/actions/todo.actions";
 import { AddTodoForm } from "@/components/AddTodoForm";
 import { ModeToggle } from "@/components/ModeToggle";
 import TodoTable from "@/components/TodoTable";
+import { auth } from "@clerk/nextjs/server";
 
 
 export default async function Home() {

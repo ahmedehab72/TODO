@@ -4,17 +4,19 @@ import { Button } from "./ui/button";
 import Spinner from "./Spinner";
 import { deleteTodoListAction } from "@/actions/todo.actions";
 import { useState } from "react";
+import { ITodo } from "@/interfaces";
+import { EditTodoForm } from "./EditTodoForm";
 
-const TodoTableActionButton = ({ id }: { id: string }) => {
+const TodoTableActionButton = ({ todo }: { todo: ITodo }) => {
     const [loading, setLoading] = useState(false);
     return (
         <>
-            <Button variant="ghost">
-                <Pen size={16} />
-            </Button>
+            <EditTodoForm todo={todo} />
             <Button variant="destructive" onClick={async () => {
                 setLoading(true);
-                await deleteTodoListAction({ id })
+                if (todo?.id) {
+                    await deleteTodoListAction({ id: todo.id });
+                }
                 setLoading(false);
             }}>
 
