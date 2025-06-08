@@ -5,11 +5,14 @@ import TodoTable from "@/components/TodoTable";
 
 
 export default async function Home() {
-  const todos = await getTodoListAction();
+  const userId = 'asdffffffffffffffffffffffffff'; // Replace with actual user ID logic
+  const todos = await getTodoListAction({ userId });
+  console.log('todossssss:', todos);
+
   return (
     <main className="container">
       <ModeToggle />
-      <AddTodoForm />
+      <AddTodoForm todos={todos} userId ={userId} />
       <TodoTable todos={todos} />
 
     </main>

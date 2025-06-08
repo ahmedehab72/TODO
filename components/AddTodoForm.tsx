@@ -27,7 +27,7 @@ import { todoFormSchema, TodoFormValue } from "@/validation"
 import { createTodoListAction } from "@/actions/todo.actions"
 import { Checkbox } from "./ui/checkbox"
 
-export function AddTodoForm() {
+export function AddTodoForm({ userId }: { userId: string }) {
 
     // Default values for the form
     const defaultValues: TodoFormValue = { title: "", body: "", completed: false };
@@ -40,8 +40,8 @@ export function AddTodoForm() {
     });
 
     const onSubmit = async (data: TodoFormValue) => {
-        console.log("Submitted Data:", data)
-        await createTodoListAction({ title: data.title, body: data.body, completed: data.completed });
+        console.log("Submitted Data::::::::", data)
+        await createTodoListAction({ title: data.title, body: data.body, completed: data.completed, userId });
     }
 
     return (
