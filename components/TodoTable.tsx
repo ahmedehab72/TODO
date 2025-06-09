@@ -19,7 +19,7 @@ export default function TodoTable({ todos }: { todos: ITodo[] }) {
             <TableCaption>A list of your recent Todos.</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">ID</TableHead>
+                    <TableHead className="w-[100px]">Number</TableHead>
                     <TableHead>Title</TableHead>
                     <TableHead>Completed</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
@@ -28,7 +28,7 @@ export default function TodoTable({ todos }: { todos: ITodo[] }) {
             <TableBody>
                 {todos.map((todo) => (
                     <TableRow key={todo.id}>
-                        <TableCell className="font-medium">{todo.id}</TableCell>
+                        <TableCell className="font-medium">{todos.indexOf(todo) + 1}</TableCell>
                         <TableCell>{todo.title}</TableCell>
                         <TableCell>{todo.completed ? <Badge>Completed</Badge> : <Badge variant={"secondary"}>UnCompleted</Badge>}</TableCell>
                         <TableCell className="flex justify-end space-x-2">

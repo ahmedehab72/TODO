@@ -14,7 +14,7 @@ export default async function Home() {
 
   const todos = await getTodoListAction({ userId });
   return (
-    <main className="container *:mx-auto px-24 py-12  ">
+    <main className="px-4 md:px-24 py-12 mx-auto">
       <div className="flex items-center justify-end mb-6">
         <AddTodoForm userId={userId} />
       </div>
