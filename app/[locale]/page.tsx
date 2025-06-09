@@ -14,12 +14,13 @@ export default async function Home() {
 
   const todos = await getTodoListAction({ userId });
   return (
-    <main className="px-4 md:px-24 py-12 mx-auto">
-      <div className="flex items-center justify-end mb-6">
-        <AddTodoForm userId={userId} />
-      </div>
-      <TodoTable todos={todos} />
-
+    <main className="">
+      <section className="px-4 md:px-24 py-12 mx-auto">
+        <div className="flex items-center justify-end mb-6">
+          <AddTodoForm userId={userId} />
+        </div>
+        <TodoTable todos={todos} />
+      </section>
     </main>
   );
 }

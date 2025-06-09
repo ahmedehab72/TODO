@@ -11,18 +11,20 @@ import {
 import { ITodo } from "@/interfaces";
 import { Badge } from "./ui/badge";
 import TodoTableActionButton from "./TodoTableActionButton";
+import { useTranslations } from "next-intl";
 
 
 export default function TodoTable({ todos }: { todos: ITodo[] }) {
+    const t = useTranslations()
     return (
         <Table>
-            <TableCaption>A list of your recent Todos.</TableCaption>
+            <TableCaption>{t("todoTable.listRecent")}</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Number</TableHead>
-                    <TableHead>Title</TableHead>
-                    <TableHead>Completed</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead className="w-[100px]">{t("todoTable.number")}</TableHead>
+                    <TableHead>{t("todoTable.title")}</TableHead>
+                    <TableHead>{t("todoTable.completed")}</TableHead>
+                    <TableHead className="text-right">{t("todoTable.actions")}</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -30,16 +32,16 @@ export default function TodoTable({ todos }: { todos: ITodo[] }) {
                     <TableRow key={todo.id}>
                         <TableCell className="font-medium">{todos.indexOf(todo) + 1}</TableCell>
                         <TableCell>{todo.title}</TableCell>
-                        <TableCell>{todo.completed ? <Badge>Completed</Badge> : <Badge variant={"secondary"}>UnCompleted</Badge>}</TableCell>
+                        <TableCell>{todo.completed ? <Badge>{t("todoTable.completed")}</Badge> : <Badge variant={"secondary"}>{t("todoTable.uncompleted")}</Badge>}</TableCell>
                         <TableCell className="flex justify-end space-x-2">
-                            <TodoTableActionButton todo= {todo} />
+                            <TodoTableActionButton todo={todo} />
                         </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
             <TableFooter>
                 <TableRow>
-                    <TableCell colSpan={3}>Total</TableCell>
+                    <TableCell colSpan={3}>{t("todoTable.total")}</TableCell>
                     <TableCell className="text-right">{todos.length}</TableCell>
                 </TableRow>
             </TableFooter>

@@ -1,0 +1,63 @@
+{
+  "HomePage": {
+    "title": "Your Home Page Title"
+  },
+  "footer": {
+    "logo": {
+      "alt": "Our Todo App",
+      "title": "OUR TODO APP"
+    },
+    "tagline": "Manage your tasks efficiently with our Todo App",
+    "product": {
+      "title": "Product",
+      "overview": "Overview",
+      "pricing": "Pricing"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "team": "Team"
+    },
+    "resources": {
+      "title": "Resources",
+      "help": "Help",
+      "sales": "Sales"
+    },
+    "social": {
+      "title": "Social",
+      "twitter": "Twitter"
+    }
+  },
+  "AddForm": {
+    "NewTodo": "New Todo",
+    "EditTodo": "Edit Todo",
+    "AddTitleDescription": "Add your todo title and description.",
+    "EditTitleDescription": "Edit your todo title and description.",
+    "Title": "Title",
+    "Description": "Short Description",
+    "completed": "Completed",
+    "descDesc": "Your can write a short description about your next todo",
+    "descPlaceholder": "Write a short description about your todo",
+    "titlePlaceholder": "Write your todo title",
+    "descCompleted": "Your to-do item will be uncompleted by default unless you checked it"
+  },
+  "cancel": "Cancel",
+  "save": "Save",
+  "edit": "Edit",
+  "error": {
+    "notFound": "Page not found",
+    "unauthorized": "You are not authorized to access this page"
+  },
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "todoTable":{
+    "listRecent":"A list of your recent Todos.",
+    "title":"Title",
+    "number":"Number",
+    "completed":"Completed",
+    "uncompleted":"UnCompleted",
+    "actions":"Actions",
+    "Total": "Total "
+  }
+}

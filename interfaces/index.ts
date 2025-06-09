@@ -5,3 +5,28 @@ export interface ITodo {
     id?: string;
     createdAt?: Date;
 }
+
+//  footer component
+export interface MenuItem {
+  title: string;
+  links: {
+    text: string;
+    url: string;
+  }[];
+}
+
+export interface Footer2Props {
+  logo?: {
+    url: string;
+    src: string;
+    alt: string;
+    title: string;
+  };
+  tagline?: string;
+  menuItems?: MenuItem[];
+  copyright?: string;
+  bottomLinks?: {
+    text: string;
+    url: string;
+  }[];
+}
