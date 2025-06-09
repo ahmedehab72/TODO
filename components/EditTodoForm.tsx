@@ -24,7 +24,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { todoFormSchema, TodoFormValue } from "@/validation"
-import { createTodoListAction, updateTodoListAction } from "@/actions/todo.actions"
+import { updateTodoListAction } from "@/actions/todo.actions"
 import { Checkbox } from "./ui/checkbox"
 import { useState } from "react"
 import Spinner from "./Spinner"

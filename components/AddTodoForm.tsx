@@ -34,7 +34,7 @@ export function AddTodoForm({ userId }: { userId: string | null }) {
     const [open, setOpen] = useState(false);
 
     // Default values for the form
-    const defaultValues: TodoFormValue = { title: "", body: "", completed: false, user_id: '' };
+    const defaultValues: TodoFormValue = { title: "", body: "", completed: false };
 
     // Initialize the form with the schema and default values
     const form = useForm<TodoFormValue>({

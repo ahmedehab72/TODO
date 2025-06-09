@@ -1,8 +1,6 @@
 import { getTodoListAction } from "@/actions/todo.actions";
 import { AddTodoForm } from "@/components/AddTodoForm";
-import { ModeToggle } from "@/components/ModeToggle";
 import TodoTable from "@/components/TodoTable";
-import { auth } from "@clerk/nextjs/server";
 
 
 export default async function Home() {
@@ -11,9 +9,10 @@ export default async function Home() {
   console.log('todossssss:', todos);
 
   return (
-    <main className="container">
-      <ModeToggle />
-      <AddTodoForm todos={todos} userId ={userId} />
+    <main className="container *:mx-auto px-24 py-12  ">
+      <div className="flex items-center justify-end mb-6">
+        <AddTodoForm userId={userId} />
+      </div>
       <TodoTable todos={todos} />
 
     </main>
