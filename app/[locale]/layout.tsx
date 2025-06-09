@@ -8,12 +8,13 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { FooterFixed } from "@/components/Footer";
+import { arSA } from '@clerk/localizations'
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Full Stack Todo App with Next.js",
+  title: "Todo App",
   description: "Create a full stack todo application with Next.js, TypeScript, Prisma, and MongoDB",
   keywords: ["Next.js", "TypeScript", "Prisma", "MongoDB", "Server Actions", "Server Components"],
 };
@@ -31,8 +32,9 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={arSA}>
       <html lang={locale} suppressHydrationWarning>
         <body className={`${inter.className}`}>
           <ThemeProvider
@@ -48,13 +50,13 @@ export default async function RootLayout({
               <NextIntlClientProvider>
                 {/* Main content area - grows to fill space */}
                 <main className="flex-1">
-                <Navbar />
+                  <Navbar />
                   {children}
                 </main>
               </NextIntlClientProvider>
 
               {/* Footer - stays at bottom */}
-              <footer className="pt-10 pb-14 px-10 dark:bg-[#1F1F1F] bg-[oklch(0.95_0_0)]">
+              <footer className="mt-10 pt-10 pb-14 px-10 dark:bg-[#1F1F1F] bg-[oklch(0.95_0_0)]">
                 <FooterFixed />
               </footer>
 
