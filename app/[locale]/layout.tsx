@@ -8,7 +8,7 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { FooterFixed } from "@/components/Footer";
-import { arSA } from '@clerk/localizations'
+import { arSA, enUS } from '@clerk/localizations'
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,7 +34,7 @@ export default async function RootLayout({
   }
 
   return (
-    <ClerkProvider localization={arSA}>
+    <ClerkProvider localization={locale === "ar" ? arSA : enUS}>
       <html lang={locale} suppressHydrationWarning>
         <body className={`${inter.className}`}>
           <ThemeProvider
